@@ -13,8 +13,11 @@ const main = (store, client) => {
         .setTitle("Список команд")
         .setDescription(
           "`/help` - Выводит текущую команду\n" +
-            "`/news` - поиск по https://haipit.news \n" +
-            "`/l /lurk /lurkmore /л /лурка /лурк` - поиск по https://lurkmore.to/"
+            "`/news` - Поиск по https://haipit.news \n" +
+            "`/l /lurk /lurkmore /л /лурка /лурк` - Поиск по https://lurkmore.to/ \n" +
+            "`/kill` - Выводит `Тобi пизда!`\n " +
+            "`/getrandomnumber` - Выводит 42\n " +
+            "`/xkcd` - рандомный (или с определенным id) комикс с https://xkcd.ru\n "
         );
       msg.channel.send({ embed });
     });
@@ -77,6 +80,20 @@ const main = (store, client) => {
     });
 
   Command.add()
+    .setTest(content => content.startsWith("/kill"))
+    .setHandler(async msg => {
+      let [_, user = ""] = msg.content.split(" ");
+      if (user) user += ", ";
+      msg.channel.send(`${user} Тобi пизда!`);
+    });
+
+  Command.add()
+    .setTest(content => content.startsWith("/getrandomnumber"))
+    .setHandler(async msg => {
+      msg.channel.send("42");
+    });
+
+  Command.add()
     .setTest(content => /^\/(l|lurk|lurkmore|л|лурка|лурк) /gim.test(content))
     .setHandler(async msg => {
       const q = msg.content.replace(/^\/(.*) /gim, "").trim();
@@ -87,15 +104,70 @@ const main = (store, client) => {
       try {
         const { data } = await api.lurk(q);
 
-        embed.setTitle(data.ogTitle);
-        embed.setURL("https:" + data.ogUrl);
-        embed.setDescription(data.ogDescription);
+        if (data.ogTitle) embed.setTitle(data.ogTitle);
+        if (data.ogUrl) embed.setURL("https:" + data.ogUrl);
+        if (data.ogDescription) embed.setDescription(data.ogDescription);
 
         msg.channel.send({ embed });
       } catch (e) {
         embed.setDescription("Не найдено");
         msg.channel.send({ embed });
       }
+    });
+
+  Command.add()
+    .setTest(content =>
+      /^\/(w|wiki|wikipedia|в|вики|википедия) /gim.test(content)
+    )
+    .setHandler(async msg => {
+      const q = msg.content.replace(/^\/(.*) /gim, "").trim();
+      if (!q) return;
+
+      const embed = new Discord.RichEmbed().setColor(0x8bc34a);
+
+      try {
+        const { data } = await api.wiki(q);
+
+        console.log(data);
+        if (data.ogTitle) embed.setTitle(data.ogTitle);
+        embed.setURL("https://ru.wikipedia.org/wiki/" + q);
+        if (data.ogDescription) embed.setDescription(data.ogDescription);
+        if (data.ogImage) {
+          if (data.ogImage.url[0] !== "h")
+            data.ogImage.url = `http:${data.ogImage.url}`;
+          embed.setImage(data.ogImage.url);
+        }
+
+        msg.channel.send({ embed });
+      } catch (e) {
+        embed.setDescription("Не найдено");
+        msg.channel.send({ embed });
+      }
+    });
+
+  Command.add()
+    .setTest(content => /^\/(xkcd)/gim.test(content))
+    .setHandler(async msg => {
+      let id = parseInt(msg.content.replace(/^\/(.*) /gim, "").trim(), 10);
+      if (Number.isNaN(id)) id = Math.round(Math.random() * 1851);
+
+      id = await api.xkcd(id);
+
+      const embed = new Discord.RichEmbed().setColor(0x2196f3);
+      embed.setURL(`https://xkcd.ru/${id}/`);
+      embed.setImage(`https://xkcd.ru/i/${id}_v1.png`);
+
+      msg.channel.send({ embed });
+    });
+
+  Command.add()
+    .setTest(content => /^\/(t|translate|п|перевод) /gim.test(content))
+    .setHandler(async msg => {
+      const q = msg.content.replace(/^\/(.*) /gim, "").trim();
+      if (!q) return;
+
+      const text = await api.translate(q);
+      //msg.reply(text);
     });
 };
 
