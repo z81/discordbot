@@ -13,7 +13,8 @@ const main = (store, client) => {
         .setTitle("Список команд")
         .setDescription(
           "`/help` - Выводит текущую команду\n" +
-            "`/news` - поиск по https://haipit.news/"
+            "`/news` - поиск по https://haipit.news \n" +
+            "`/l /lurk /lurkmore /л /лурка /лурк` - поиск по https://lurkmore.to/"
         );
       msg.channel.send({ embed });
     });
@@ -81,7 +82,20 @@ const main = (store, client) => {
       const q = msg.content.replace(/^\/(.*) /gim, "").trim();
       if (!q) return;
 
-      // const data = await
+      const embed = new Discord.RichEmbed().setColor(0x8bc34a);
+
+      try {
+        const { data } = await api.lurk(q);
+
+        embed.setTitle(data.ogTitle);
+        embed.setURL("https:" + data.ogUrl);
+        embed.setDescription(data.ogDescription);
+
+        msg.channel.send({ embed });
+      } catch (e) {
+        embed.setDescription("Не найдено");
+        msg.channel.send({ embed });
+      }
     });
 };
 
