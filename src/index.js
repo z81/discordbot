@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const key = require("./key");
+const key = require("../key");
 const botAllCommandRegister = require("./botAllCommandRegister");
 
 const state = {

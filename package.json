@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "node src/index.js",
+    "prod": "pm2 start --name \"Discord bot\" ./src/main.js"
+  },
   "dependencies": {
     "discord.js": "^11.2.1",
     "node-opus": "^0.2.7",
