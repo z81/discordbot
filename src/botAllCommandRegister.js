@@ -15,6 +15,7 @@ const main = (store, client) => {
           "`/help` - Выводит текущую команду\n" +
             "`/news` - Поиск по https://haipit.news \n" +
             "`/l /lurk /lurkmore /л /лурка /лурк` - Поиск по https://lurkmore.to/ \n" +
+            "`/w /wiki /wikipedia /в /вики /википедия` - Поиск по http://ru.wikipedia.org/ \n" +
             "`/kill` - Выводит `Тобi пизда!`\n " +
             "`/getrandomnumber` - Выводит 42\n " +
             "`/xkcd` - Выводит случайный (или с определенным id) комикс с https://xkcd.ru\n " +
