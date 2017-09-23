@@ -537,7 +537,7 @@ const main = (store, client) => {
         embed.setTitle(m.name);
       }
 
-      embed.setDescription(text);
+      embed.setDescription(text.replace(/\[.*\]/gim, ""));
       msg.channel.send({ embed });
     });
 
