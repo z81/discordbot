@@ -52,11 +52,7 @@ const apiCall = (text, from = "en", to = "ru") =>
       });
     });
 
-    req.on("error", e => {
-      reject(e);
-    });
-
-    // write data to request body
+    req.on("error", reject);
     req.write(postData);
     req.end();
   });
