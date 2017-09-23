@@ -19,7 +19,6 @@ const apiCall = (text, from = "en", to = "ru") =>
       port: 443,
       path: "/neural/api/translator/translate",
       method: "POST",
-      // agent: new http.Agent({ keepAlive: true }),
       headers: {
         "Accept-Language": "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4",
         "Accept-Encoding": "gzip, deflate, br",
