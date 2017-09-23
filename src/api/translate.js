@@ -15,8 +15,6 @@ const apiCall = (text, from = "en", to = "ru") =>
     });
 
     const options = {
-      //secureProtocol: "TLSv1_method",
-      //secureProtocol: "SSLv3_method",
       hostname: "translator.microsoft.com",
       port: 443,
       path: "/neural/api/translator/translate",
