@@ -264,8 +264,8 @@ const main = (store, client) => {
         const m = mountains[id];
         text = `Ваш ор выше самой высокой горы - ${m.name}(${m.height}м)!`;
       } else {
-        const m1 = mountains[id];
-        const m2 = mountains[id + 1];
+        const m1 = mountains[id + 1];
+        const m2 = mountains[id];
         text = `Ваш ор выше ${m1.name}(${m1.height}м) и ниже ${m2.name}(${m2.height}м)!`;
       }
 
