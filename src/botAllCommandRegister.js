@@ -254,6 +254,7 @@ const main = (store, client) => {
     .setHandler(async msg => {
       const id = Math.round(Math.random() * mountains.length * 1.1);
       let text = "";
+      console.log(id);
 
       if (id > mountains.length - 1) text = "Ваш ор выше всех гор!";
       else if (id === 0) text = "Ваш ор ниже всех гор!";
