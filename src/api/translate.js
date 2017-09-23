@@ -11,7 +11,7 @@ const apiCall = (text, from = "en", to = "ru") =>
     const postData = JSON.stringify({
       Text: text,
       SourceLanguage: from,
-      TargetLanguage: to //translate.get(message.author.id)
+      TargetLanguage: to
     });
 
     const options = {
