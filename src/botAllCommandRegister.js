@@ -17,7 +17,9 @@ const main = (store, client) => {
             "`/l /lurk /lurkmore /л /лурка /лурк` - Поиск по https://lurkmore.to/ \n" +
             "`/kill` - Выводит `Тобi пизда!`\n " +
             "`/getrandomnumber` - Выводит 42\n " +
-            "`/xkcd` - Выводит случайный (или с определенным id) комикс с https://xkcd.ru\n "
+            "`/xkcd` - Выводит случайный (или с определенным id) комикс с https://xkcd.ru\n " +
+            "`ор` - Измеряет ваш ор. \n" +
+            "Исходники - https://github.com/z81/discordbot \n"
         );
       msg.channel.send({ embed });
     });
