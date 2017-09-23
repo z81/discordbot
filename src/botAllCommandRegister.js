@@ -250,7 +250,7 @@ const main = (store, client) => {
   ];
 
   Command.add()
-    .setTest(content => /^ор/gim.test(content))
+    .setTest(content => /^(ор|or)/gim.test(content))
     .setHandler(async msg => {
       const id = Math.round(Math.random() * mountains.length * 1.1);
       let text = "";
