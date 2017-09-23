@@ -266,9 +266,7 @@ const main = (store, client) => {
         text = `Ваш ор выше ${m1.name}(${m1.height}м) и ниже ${m2.name}(${m2.height}м)!`;
       }
 
-      embed.setDescription(text);
-
-      msg.channel.send({ embed });
+      msg.reply(text);
     });
 
   Command.add()
