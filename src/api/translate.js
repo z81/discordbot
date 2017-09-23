@@ -54,7 +54,6 @@ const apiCall = (text, from = "en", to = "ru") =>
 
     req.on("error", e => {
       reject(e);
-      console.error(`problem with request: ${e.message}`);
     });
 
     // write data to request body
