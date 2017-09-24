@@ -3,5 +3,6 @@ module.exports = {
   lurk: require("./lurk"),
   xkcd: require("./xkcd"),
   wiki: require("./wiki"),
+  or: require("./or"),
   translate: require("./translate")
 };
