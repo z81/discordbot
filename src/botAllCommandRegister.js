@@ -165,6 +165,15 @@ const main = (store, client) => {
     });
 
   Command.add()
+    .setTest(
+      content =>
+        content.toLowerCase() === "kek" || content.toLowerCase() === "кек"
+    )
+    .setHandler(async msg => {
+      msg.reply(Math.random() > 0.5 ? "kukarek" : "4eburek");
+    });
+
+  Command.add()
     .setTest(content => /^\/(xkcd)/gim.test(content))
     .setHandler(async msg => {
       let id = parseInt(msg.content.replace(/^\/(.*) /gim, "").trim(), 10);
