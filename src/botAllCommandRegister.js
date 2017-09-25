@@ -177,7 +177,7 @@ const main = (store, client) => {
     .setTest(content => / или /gim.test(content))
     .setHandler(async msg => {
       const items = msg.content.split(/или/i);
-      msg.reply(result[Math.round(Math.random() * (items.length - 1))]);
+      msg.channel.send(items[Math.round(Math.random() * (items.length - 1))]);
     });
 
   Command.add()
