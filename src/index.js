@@ -8,6 +8,7 @@ const state = {
 
 const client = new Discord.Client();
 client.on("ready", () => {
+  client.user.setGame("Бота");
   console.log("I am ready!");
 });
 
@@ -23,6 +24,10 @@ client.on("guildMemberAdd", member => {
   const channel = member.guild.channels.find("name", "member-log");
   if (!channel) return;
   channel.send(`Welcome to the server, ${member}`);
+});
+
+process.on("exit", () => {
+  client.user.setGame("Обновляюсь");
 });
 
 botAllCommandRegister(state, client);
