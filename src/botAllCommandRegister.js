@@ -68,10 +68,9 @@ const main = (store, client) => {
         limit: 25
       });
 
-      console.log("get news", result);
       const embed = new Discord.RichEmbed().setColor(0x009ea6);
 
-      const news = JSON.parse(result);
+      const news = JSON.parse(result.toString());
       console.log(news);
       if (!news) {
         embed.setDescription("Ничего не найдено");
