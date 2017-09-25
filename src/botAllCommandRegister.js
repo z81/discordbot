@@ -20,6 +20,8 @@ const main = (store, client) => {
             "`/getrandomnumber` - Выводит 42\n " +
             "`/xkcd` - Выводит случайный (или с определенным id) комикс с https://xkcd.ru\n " +
             "`ор` - Измеряет ваш ор. \n" +
+            "`1 или 2` - Выводит случайно 1 или 2. \n" +
+            "`kek` `кек` - Выводит случайны ответ на кек. \n" +
             "Исходники - https://github.com/z81/discordbot \n"
         );
       msg.channel.send({ embed });
@@ -69,6 +71,7 @@ const main = (store, client) => {
       const embed = new Discord.RichEmbed().setColor(0x009ea6);
 
       const news = JSON.parse(result);
+      console.log(news);
       if (!news) {
         embed.setDescription("Ничего не найдено");
       } else {
