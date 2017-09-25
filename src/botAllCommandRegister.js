@@ -61,6 +61,7 @@ const main = (store, client) => {
     .setTest(content => content.startsWith("/randomnews"))
     .setHandler(async msg => {
       const q = msg.content.substr(11).trim();
+      console.log("get news");
       if (!q) return;
 
       const result = await api.hapiNews("news/random/", {
@@ -68,6 +69,7 @@ const main = (store, client) => {
         limit: 25
       });
 
+      console.log("get news", result);
       const embed = new Discord.RichEmbed().setColor(0x009ea6);
 
       const news = JSON.parse(result);
