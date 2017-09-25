@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const math = require("mathjs");
 const Command = require("./Command");
 const api = require("./api");
 
@@ -174,6 +175,13 @@ const main = (store, client) => {
     )
     .setHandler(async msg => {
       msg.reply(Math.random() > 0.5 ? "kukarek" : "4eburek");
+    });
+
+  Command.add()
+    .setTest(content => content.startsWith("/calc"))
+    .setHandler(async msg => {
+      const data = msg.content.replace("/calc", "").trim();
+      msg.reply(math.eval(data));
     });
 
   Command.add()
