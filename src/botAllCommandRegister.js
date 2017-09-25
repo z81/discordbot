@@ -174,6 +174,13 @@ const main = (store, client) => {
     });
 
   Command.add()
+    .setTest(content => / или /gim.test(content))
+    .setHandler(async msg => {
+      const items = msg.content.split(/или/i);
+      msg.reply(result[Math.round(Math.random() * (items.length - 1))]);
+    });
+
+  Command.add()
     .setTest(content => /^\/(xkcd)/gim.test(content))
     .setHandler(async msg => {
       let id = parseInt(msg.content.replace(/^\/(.*) /gim, "").trim(), 10);
