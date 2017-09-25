@@ -61,8 +61,7 @@ const main = (store, client) => {
     .setTest(content => content.startsWith("/randomnews"))
     .setHandler(async msg => {
       const q = msg.content.substr(11).trim();
-      console.log("get news");
-      if (!q) return;
+      console.log("get news", q);
 
       const result = await api.hapiNews("news/random/", {
         platform: "Очень модный бот",

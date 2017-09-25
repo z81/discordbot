@@ -26,9 +26,12 @@ client.on("guildMemberAdd", member => {
   channel.send(`Welcome to the server, ${member}`);
 });
 
-process.on("exit", () => {
+const onExit = () => {
   client.user.setGame("Обновляюсь");
-});
+};
+
+process.on("exit", onExit);
+process.on("SIGINT", onExit);
 
 botAllCommandRegister(state, client);
 client.login(key);
