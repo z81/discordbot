@@ -2,7 +2,7 @@
   "scripts": {
     "run:dev": "nodemon ./bin/index.js",
     "run:prod": "pm2 start --name \"Discord bot\" ./bin/main.js",
-    "install-deps-global-linux": "npm install pm2 -g && sudo apt install python3",
+    "install-deps-global-linux": "sudo apt install python3",
     "start": "node ./bin/index.js"
   },
   "dependencies": {
