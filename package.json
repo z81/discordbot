@@ -1,13 +1,43 @@
 {
   "scripts": {
-    "start": "node src/index.js",
-    "prod": "pm2 start --name \"Discord bot\" ./src/main.js"
+    "run:dev": "nodemon ./bin/index.js",
+    "run:prod": "pm2 start --name \"Discord bot\" ./bin/main.js",
+    "install-deps-global-deb64": "sudo apt install python3",
+    "start": "node ./bin/index.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
     "discord.js": "^11.2.1",
     "mathjs": "^3.16.3",
-    "node-opus": "^0.2.7",
     "node-rest-client": "^3.1.0",
+    "nodemon": "^1.12.1",
     "open-graph-scraper": "^2.5.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.2.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb/base",
+    "rules": {
+      "no-return-await": 0,
+      "indent": [
+        "error",
+        4
+      ],
+      "import/first": 0,
+      "import/prefer-default-export": 0
+    }
   }
 }
